@@ -1,0 +1,3 @@
+INSERT INTO book (title, description, isbn, release_date, category) VALUES ('Rdza', 'Wzruszająca, życiowa powieść', '3581-9894', '2017-11-18', 'OBYCZAJOWA');
+INSERT INTO book (title, description, isbn, release_date, category) VALUES ('Outsider', 'Mroczna powieść', '0275-2972', '2006-08-13', 'HORROR');
+INSERT INTO book (title, description, isbn, release_date, category) VALUES ('Teraz albo nigdy', 'Romantyczna powieść', '3001-9281', '2000-10-04', 'DRAMAT');

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Library</title>
+</head>
+<body>
+
+<form action="/dodawanie" method="post" th:object="${book}">
+
+    <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
+    <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
+    <input type="text" placeholder="isbn" th:field="*{isbn}"/> <br/>
+    <input type="date" placeholder="Data wydania" th:field="*{releaseDate}"/><br/>
+    <select th:field="*{category}">
+        <option
+                th:each="category: ${T(mp.zadanie23.Category).values()}"
+                th:text="${category}"
+                th:value="${category}"></option>
+    </select>
+
+    <input type="submit" value="Dodaj" />
+
+</form>
+
+</body>
+</html>
