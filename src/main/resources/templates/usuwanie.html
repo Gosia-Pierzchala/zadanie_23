@@ -8,12 +8,10 @@
 
 <h1>Usuń książkę</h1>
 
-<form action="/usuwanie" method="post" th:object="${book}">
+<form action="/usuwanie" method="post">
     <p>Wybierz id książki:
-    <select>
-        <option th:each="book: ${books}" th:text="${book.id}"> </option>
-    </select></p>
-    <input type="submit" value="Usuń!"/> <br>
+    <input type="text" name="id"/> <br>
+    <input type="submit" value="Usuń!"/>
 </form>
 
 </body>

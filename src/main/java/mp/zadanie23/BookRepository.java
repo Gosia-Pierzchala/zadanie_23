@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -38,17 +39,25 @@ public class BookRepository {
         entityManager.getTransaction().commit();
     }
 
-    public void edit(Book oldBook, Book newBook) {
+    public void edit(Book book, String title, String description, String isbn, Category category) {
         entityManager.getTransaction().begin();
-        newBook.setId(oldBook.getId());
-        newBook.setTitle(oldBook.getTitle());
-        newBook.setDescription(oldBook.getDescription());
-        newBook.setIsbn(oldBook.getIsbn());
-        newBook.setReleaseDate(oldBook.getReleaseDate());
-        newBook.setCategory(oldBook.getCategory());
-        entityManager.remove(oldBook);
-        entityManager.persist(newBook);
+        book.setTitle(title);
+        book.setDescription(description);
+        book.setIsbn(isbn);
+        book.setCategory(category);
         entityManager.getTransaction().commit();
+    }
+
+    public List<Book> sortByTitleAsc(){
+        TypedQuery<Book> query = entityManager.createQuery("select b from Book b order by b.title", Book.class);
+        List<Book> books = query.getResultList();
+        return books;
+    }
+
+    public List<Book> sortByTitleDesc(){
+        TypedQuery<Book> query = entityManager.createQuery("select b from Book b order by b.title DESC", Book.class);
+        List<Book> books = query.getResultList();
+        return books;
     }
 
 }

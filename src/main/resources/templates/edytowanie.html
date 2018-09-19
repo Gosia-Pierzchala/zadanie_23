@@ -9,33 +9,19 @@
 
 <h1>Książka, którą chcesz edytować: </h1>
 
-<form action="/edytowanie" method="get" th:object="${oldBook}">
-    <p>Podaj id: <input type="text" placeholder="Id" th:field="*{id}"/></p>
-    <tr>
-        <td th:text="'Tytuł: ' + ${oldBook.title}"></td><br/>
-        <td th:text="'Opis: ' + ${oldBook.description}"></td><br/>
-        <td th:text="'isbn: ' + ${oldBook.isbn}"></td><br/>
-        <td th:text="'Data wydania: ' + ${oldBook.releaseDate}"></td><br/>
-        <td th:text="'Kstegoria: ' + ${oldBook.category}"></td><br/>
-    </tr>
-    <input type="submit" value="Odśwież dane" />
-</form>
-
-<h1>Nowe parametry: </h1>
-
-<form action="/edytowanie" method="post" th:object="${newBook}">
-    <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
-    <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
-    <input type="text" placeholder="isbn" th:field="*{isbn}"/> <br/>
-    <input type="date" placeholder="Data wydania" th:field="*{releaseDate}"/><br/>
-    <select th:field="*{category}">
-        <option
-                th:each="category: ${T(mp.zadanie23.Category).values()}"
-                th:text="${category}"
-                th:value="${category}"></option>
-    </select><br/>
-
-    <input type="submit" value="Edytuj" />
+<form action="/edytowanie" method="post" th:object="${book}">
+    <p>Wybierz id książki:
+        <input type="text" name="id"/> <br>
+        <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
+        <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
+        <input type="text" placeholder="isbn" th:field="*{isbn}"/> <br/>
+        <select th:field="*{category}">
+            <option
+                    th:each="category: ${T(mp.zadanie23.Category).values()}"
+                    th:text="${category}"
+                    th:value="${category}"></option>
+        </select><br/>
+        <input type="submit" value="Edytuj" />
 </form>
 
 </body>
