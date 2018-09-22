@@ -5,7 +5,6 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
-import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -39,23 +38,26 @@ public class BookRepository {
         entityManager.getTransaction().commit();
     }
 
-    public void edit(Book book, String title, String description, String isbn, Category category) {
-        entityManager.getTransaction().begin();
-        book.setTitle(title);
-        book.setDescription(description);
-        book.setIsbn(isbn);
-        book.setCategory(category);
-        entityManager.getTransaction().commit();
-    }
-
-    public List<Book> sortByTitleAsc(){
-        TypedQuery<Book> query = entityManager.createQuery("select b from Book b order by b.title", Book.class);
+    public List<Book> findAllByOrderByTitleAsc(){
+        TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b ORDER BY b.title", Book.class);
         List<Book> books = query.getResultList();
         return books;
     }
 
-    public List<Book> sortByTitleDesc(){
-        TypedQuery<Book> query = entityManager.createQuery("select b from Book b order by b.title DESC", Book.class);
+    public List<Book> findAllByOrderByTitleDesc(){
+        TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b ORDER BY b.title DESC", Book.class);
+        List<Book> books = query.getResultList();
+        return books;
+    }
+
+    public List<Book> findAllByOrderByDateAsc(){
+        TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b ORDER BY b.releaseDate", Book.class);
+        List<Book> books = query.getResultList();
+        return books;
+    }
+
+    public List<Book> findAllByOrderByDateDesc(){
+        TypedQuery<Book> query = entityManager.createQuery("SELECT b FROM Book b ORDER BY b.releaseDate DESC", Book.class);
         List<Book> books = query.getResultList();
         return books;
     }

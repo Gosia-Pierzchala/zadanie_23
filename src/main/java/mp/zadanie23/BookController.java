@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.time.LocalDate;
-import java.util.List;
 
 @Controller
 public class BookController {
@@ -48,35 +46,16 @@ public class BookController {
         return "redirect:/";
     }
 
-    @GetMapping("/edytowanie")
-    public String formularzEdytowania(Model model, @RequestParam (value = "id", required = false, defaultValue = "1") Long id){
+    @GetMapping("/edytujKsiazke")
+    public String edit(@RequestParam Long id, Model model) {
         Book book = bookRepository.findById(id);
         model.addAttribute("book", book);
         return "edytowanie";
     }
 
-    @PostMapping("/edytowanie")
-    public String edytujKsiazke(Book book, @RequestParam (value = "id") Long id,
-                                @RequestParam (value = "title", required = false) String title,
-                                @RequestParam (value = "description", required = false) String description,
-                                @RequestParam (value = "isbn", required = false) String isbn,
-                                @RequestParam (value = "category", required = false) Category category){
-        bookRepository.edit(book, title, description, isbn, category);
-        return "redirect:/";
-    }
-
-    @GetMapping("/sortowanie")
-    public String formularzSortowania(@RequestParam(name = "Sposób sortowania", required = false) String userInput){
-        return "sortowanie";
-    }
-
-    @PostMapping("/sortowanie")
-    public String posortujliste (List<Book> books, @RequestParam(name = "Sposób sortowania") String userInput) {
-        if(userInput.equals("po tytule rosnaco")){
-            books = bookRepository.sortByTitleAsc();
-        } else if(userInput.equals("po tytule malejaco")){
-            books = bookRepository.sortByTitleDesc();
-        }
+    @PostMapping("/edytujKsiazke")
+    public String edit(Book book) {
+        bookRepository.save(book);
         return "redirect:/";
     }
 

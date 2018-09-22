@@ -8,16 +8,20 @@
 
 <h1>Książki</h1>
 
+<a href="/?action=SORT_BY_TITLE_ASC">Posortuj książki po tytule rosnąco</a><br/>
+<a href="/?action=SORT_BY_TITLE_DESC">Posortuj książki po tytule malejąco</a><br/>
+<a href="/?action=SORT_BY_DATE_ASC">Posortuj książki po dacie wydania malejąco</a><br/>
+<a href="/?action=SORT_BY_DATE_DESC">Posortuj książki po dacie wydania rosnąco</a>
+
 <ul>
     <li th:each="book: ${books}">
         <a th:href="'/book/' + ${book.id}" th:text="${book.title}"></a>
+        <a th:href="'/edytujKsiazke?id=' + ${book.id}">Edycja</a>
     </li>
 </ul>
 
 <a href="/dodawanie">Dodaj książkę</a><br>
 <a href="/usuwanie">Usuń książkę</a><br>
-<a href="/edytowanie">Edytuj książkę</a><br>
-<a href="/sortowanie">Posortuj listę</a>
 
 </body>
 </html>

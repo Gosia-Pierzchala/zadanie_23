@@ -7,22 +7,26 @@
 
 <body>
 
-<h1>Książka, którą chcesz edytować: </h1>
+<div style="margin: auto; width: 400px">
 
-<form action="/edytowanie" method="post" th:object="${book}">
-    <p>Wybierz id książki:
-        <input type="text" name="id"/> <br>
-        <input type="text" placeholder="Tytuł" th:field="*{title}"/> <br/>
-        <input type="text" placeholder="Opis" th:field="*{description}"/> <br/>
-        <input type="text" placeholder="isbn" th:field="*{isbn}"/> <br/>
+    <form action="/edytujKsiazke" method="post" th:object="${book}">
+        <input type="hidden" th:field="*{id}" placeholder="ID" /> <br/>
+        <input type="text" th:field="*{title}" placeholder="Tytuł" /> <br/>
+        <input type="text" th:field="*{description}" placeholder="Opis" /> <br/>
+        <input type="text" th:field="*{isbn}" placeholder="isbn" /> <br/>
+        <input type="date" th:field="*{releaseDate}" placeholder="Data wydania"/><br/>
         <select th:field="*{category}">
             <option
                     th:each="category: ${T(mp.zadanie23.Category).values()}"
                     th:text="${category}"
-                    th:value="${category}"></option>
-        </select><br/>
+                    th:value="${category}">
+            </option>
+        </select>
         <input type="submit" value="Edytuj" />
-</form>
+
+    </form>
+
+</div>
 
 </body>
 </html>
