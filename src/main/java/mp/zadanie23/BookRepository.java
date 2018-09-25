@@ -32,6 +32,19 @@ public class BookRepository {
         entityManager.getTransaction().commit();
     }
 
+    public void update(Book book, Long id) {
+        entityManager.getTransaction().begin();
+        Book book1 = entityManager.find(Book.class, id);
+        book1.setId(book.getId());
+        book1.setTitle(book.getTitle());
+        book1.setDescription(book1.getDescription());
+        book1.setIsbn(book.getIsbn());
+        book1.setCategory(book.getCategory());
+        book1.setReleaseDate(book.getReleaseDate());
+        entityManager.persist(book1);
+        entityManager.getTransaction().commit();
+    }
+
     public void remove(Book book) {
         entityManager.getTransaction().begin();
         entityManager.remove(book);

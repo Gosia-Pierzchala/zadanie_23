@@ -54,8 +54,8 @@ public class BookController {
     }
 
     @PostMapping("/edytujKsiazke")
-    public String edit(Book book) {
-        bookRepository.save(book);
+    public String edit(@RequestParam Long id, Book book) {
+        bookRepository.update(book, id);
         return "redirect:/";
     }
 
